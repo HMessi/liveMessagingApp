@@ -17,3 +17,5 @@ Route::get('/', function ()
     broadcast(new websocketDemo('datadata'));
     return view('welcome');
 });
+
+Route::get('/liveMessage', 'MessagesController@index');
