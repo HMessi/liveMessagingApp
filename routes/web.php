@@ -19,3 +19,9 @@ Route::get('/', function ()
 });
 
 Route::get('/liveMessage', 'MessagesController@index');
+Route::get('/messages', 'MessagesController@fetchMessages');
+Route::post('/messages', 'MessagesController@sendMessages');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

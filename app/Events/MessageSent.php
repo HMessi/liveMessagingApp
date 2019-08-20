@@ -9,20 +9,21 @@ use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+use App\Message;
 
-class websocketDemo implements ShouldBroadcast
+class MessageSent implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $datame;
+    public $message;
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($datame)
+    public function __construct(Message $message)
     {
-        $this->datame = $datame;
+        $this->message = $message;
     }
 
     /**
@@ -32,6 +33,7 @@ class websocketDemo implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new Channel('MaDemoCH');
+        //precense channel to determine whos in the channel
+        return new PresenceChannel('texting');
     }
 }
